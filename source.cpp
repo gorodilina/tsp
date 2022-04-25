@@ -1,5 +1,10 @@
 #include "header.h"
 
+double sup1;
+double sup2;
+
+double infinum=0;
+
 using namespace std;
 
 double dist( pt a, pt b )
@@ -44,7 +49,6 @@ vector<vector<double>> min_row (vector<vector<double>> &M)
          if (min<inf1)
          {
              sup1+=min;
-             //infinum+=min;
          }
          for (int j = 0; j < N; j++)
             if (M[i][j]!=inf1)
@@ -148,24 +152,20 @@ vector<vector<double>> get_M2 (vector<vector<double>> &M, vector<vector<double>>
     return M2;
 }
 
-void little_method(vector<vector<double>> &M)
+void little_method(vector<vector<double>> &M, double Sup1)
 {
+    infinum+=Sup1;
     sup1=0;
     sup2=0;
     int N=M.size();
     vector<vector<double>> C (N, vector<double> (N));
     vector<vector<double>> M1;
     vector<vector<double>> M2;
-    //M=min_row(M);
-    //show_mat(M);
     C=coeffs(M);
-    //show_mat(C);
-    //cout<<infinum<<endl;
     M1=get_M1 (M, C);
     M1=min_row(M1);
     M2=get_M2 (M, C);
     C.clear();
-    //cout<< sup1 <<" "<<sup2<<endl;
 
     if (M.size()>2)
     {
@@ -174,7 +174,7 @@ void little_method(vector<vector<double>> &M)
             M2.clear();
             M.clear();
             infinum+=sup1;
-            little_method(M1);
+            little_method(M1, 0);
         }
         else
         {
@@ -182,7 +182,7 @@ void little_method(vector<vector<double>> &M)
             M.clear();
             infinum+=sup2;
             M2=min_row(M2);
-            little_method(M2);
+            little_method(M2, 0);
         }
     }
     else
