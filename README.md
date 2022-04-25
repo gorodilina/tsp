@@ -1,1 +1,1 @@
-Here will be the code for TSP-task
+Реализован метод Литтла
