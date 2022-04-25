@@ -2,9 +2,11 @@
 
 using namespace std;
 
+const int inf1=1E9;
+const int inf2=1E9;
+
 struct pt
 {
-    //int id;
     double x,y;
 };
 
@@ -26,5 +28,5 @@ vector<vector<double>> get_M1 (vector<vector<double>> &M, vector<vector<double>>
 
 vector<vector<double>> get_M2 (vector<vector<double>> &M, vector<vector<double>> &C);
 
-void little_method(vector<vector<double>> &M);
+void little_method(vector<vector<double>> &M, double Sup1);
 
